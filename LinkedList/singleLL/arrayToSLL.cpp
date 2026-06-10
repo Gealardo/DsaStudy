@@ -13,8 +13,30 @@ struct Node{
     }
 };
 
+
+//traversal and display
+void displayLL(Node* head){
+    Node* temp=head;
+    if(temp==nullptr){
+        cout<<"LL id empty"<<endl;
+        return;
+    }
+    //tevel through LL
+    while(temp!=nullptr){
+        cout<<temp->data;
+        temp=temp->next;
+        if(temp!=nullptr) cout<<"->";
+    }
+    cout<<endl;
+
+}
+
 // making sll
-Node* arrayToSLL(vector<int>arr){
+Node* arrayToSLL(vector<int>&arr){
+    if(arr.size()==0) {
+         cout<<"array has no el"<<endl;
+         return nullptr;
+    }
     Node* head=new Node(arr[0]);
     Node* connector=head;
     for(int i=1;i<arr.size();i++){
@@ -26,8 +48,15 @@ Node* arrayToSLL(vector<int>arr){
 }
 
 int main(){
-  vector<int>arr={10,20,30};
+  vector<int>arr={3,4,5,6,7,8};
   Node* head= arrayToSLL(arr);
-  cout<<"head -> data : "<<head->data<<endl;
+
+
+ if(head != nullptr) {
+        cout << "head -> data : " << head->data << endl;
+    }
+
+ //display LL
+  displayLL(head);
   
 }
