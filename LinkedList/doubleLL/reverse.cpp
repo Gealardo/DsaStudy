@@ -68,6 +68,7 @@ Node* reversell(Node* head){
         curr=front;
      }
     return prev;
+   
 
 }
 //---------------------------------------------//
