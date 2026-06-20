@@ -32,6 +32,35 @@ int maxSumSlidingWindow(const vector<int>& arr, int k) {
     }
     return max_sum;
 }
+//---------------------------------------------
+int maxofsizek(vector<int>&arr,int k){
+    int n=arr.size();
+    int left=0;
+    int right=0;
+    int sum=0;
+    int max_sum=INT_MIN;
+    while(right<n){
+        // process on the window
+        sum+=arr[right];
+
+        //if window size less that k
+        if(right-left+1<k){
+            right++;
+        }
+        //if window size==k
+        else if(right-left + 1==k){
+            //^---update the ans.
+            max_sum=max(sum,max_sum);
+              //remove left.
+            sum-=arr[left];
+            left++;
+            right++;  
+
+        }
+    }
+    return max_sum;
+}
+
 
 void printArray(const vector<int>& arr) {
     cout << "[";
@@ -49,7 +78,7 @@ int main() {
     cout << "Array 1: "; printArray(arr1);
     cout << "K = " << k1 << "\n";
     cout << "Brute Force: " << maxSumBruteForce(arr1, k1) << " (Expected: 39)\n";
-    cout << "Sliding Window: " << maxSumSlidingWindow(arr1, k1) << " (Expected: 39)\n";
+    cout << "Sliding Window: " << maxofsizek(arr1, k1) << " (Expected: 39)\n";
     cout << "-------------------\n";
 
     vector<int> arr2 = {1, 1, 1, 1, 10, 10};
