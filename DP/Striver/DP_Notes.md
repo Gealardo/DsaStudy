@@ -656,4 +656,560 @@ Option 2: Come from i-2
 | Recursion  | O(2^n) | O(n)        | Try all paths     |
 | Memoization| O(n)   | O(n) + O(n) | Cache results     |
 | Tabulation | O(n)   | O(n)        | Build bottom-up   |
-| Space Opt  | O(n)   | O(1)        |Slidingwindow      |          
+| Space Opt  | O(n)   | O(1)        |Slidingwindow      |
+
+# DP4 - Frog Jump K Distance
+
+## Problem
+
+Given an array `height[]`.
+
+A frog starts at index `0`.
+
+Allowed jumps:
+
+* 1 step
+* 2 steps
+* 3 steps
+* ...
+* K steps
+
+Jump Cost:
+
+```
+abs(height[i] - height[j])
+```
+
+Goal:
+
+```
+Reach the last index with minimum total energy.
+```
+
+---
+
+# Why This Problem?
+
+DP3 (Frog Jump):
+
+```
+Can jump:
+1 step
+2 steps
+```
+
+DP4 (Frog Jump K Distance):
+
+```
+Can jump:
+1 to K steps
+```
+
+This is the first DP problem where the number of choices is not fixed.
+
+---
+
+# Key Observation
+
+To reach index `i`, the frog may come from:
+
+```
+i-1
+i-2
+i-3
+...
+i-K
+```
+
+(Only valid indices)
+
+Therefore:
+
+```
+Try all possible jumps
+and choose the minimum cost.
+```
+
+---
+
+# State Definition
+
+dp[i]
+
+Meaning:
+
+```
+Minimum energy required
+to reach index i.
+```
+
+Important:
+
+```
+dp[i] ≠ current jump cost
+
+dp[i] = total minimum cost
+        to reach i
+```
+
+---
+
+# Thinking Process
+
+Question:
+
+```
+How can I reach index i?
+```
+
+Answer:
+
+```
+From any previous index:
+
+i-1
+i-2
+...
+i-K
+```
+
+For every valid jump:
+
+```
+Previous Cost
++
+Current Jump Cost
+```
+
+Take minimum among all choices.
+
+---
+
+# Recurrence
+
+For every jump length j:
+
+```
+1 ≤ j ≤ K
+```
+
+and
+
+```
+i-j ≥ 0
+```
+
+Cost:
+
+```
+dp[i-j]
++
+abs(height[i]-height[i-j])
+```
+
+Therefore:
+
+```
+dp[i]
+
+=
+
+minimum of all valid jumps
+```
+
+---
+
+# Visual Example
+
+Height:
+
+```
+[10, 20, 40, 30]
+```
+
+K = 3
+
+Index:
+
+```
+ 0   1   2   3
+```
+
+To reach index 3:
+
+Possible previous positions:
+
+```
+2
+1
+0
+```
+
+Possible Costs:
+
+```
+dp[2] + |30-40|
+
+dp[1] + |30-20|
+
+dp[0] + |30-10|
+```
+
+Take minimum.
+
+---
+
+# Base Case
+
+dp[0] = 0
+
+Reason:
+
+```
+Already standing there.
+
+No energy required.
+```
+
+---
+
+# Recursive Solution
+
+Idea:
+
+For current index:
+
+```
+Try all jumps
+
+1 to K
+```
+
+Return minimum cost.
+
+Pseudo Thinking:
+
+```
+solve(i)
+
+Try:
+
+solve(i-1)
+
+solve(i-2)
+
+...
+
+solve(i-K)
+```
+
+Choose minimum.
+
+---
+
+# Why Recursion Is Slow?
+
+Many states are solved repeatedly.
+
+Example:
+
+```
+solve(10)
+```
+
+calls
+
+```
+solve(9)
+solve(8)
+solve(7)
+```
+
+and each of them again calls:
+
+```
+solve(8)
+solve(7)
+solve(6)
+```
+
+Repeated work.
+
+---
+
+# Memoization (Top-Down)
+
+Idea:
+
+Before solving a state:
+
+```
+Check dp[]
+```
+
+If already calculated:
+
+```
+Return stored answer.
+```
+
+Otherwise:
+
+```
+Calculate and store.
+```
+
+---
+
+# Tabulation (Bottom-Up)
+
+Build answers from:
+
+```
+dp[0]
+```
+
+to
+
+```
+dp[n]
+```
+
+For every index:
+
+```
+Try all jumps
+
+1 to K
+```
+
+Store minimum answer.
+
+---
+
+# Complexity
+
+Recursion:
+
+```
+Time  : Exponential
+
+Space : O(n)
+```
+
+---
+
+Memoization:
+
+```
+Time  : O(n × k)
+
+Space : O(n)
+```
+
+---
+
+Tabulation:
+
+```
+Time  : O(n × k)
+
+Space : O(n)
+```
+
+---
+
+# Can We Space Optimize?
+
+DP3:
+
+```
+dp[i]
+depends only on
+
+dp[i-1]
+dp[i-2]
+```
+
+Therefore:
+
+```
+O(1) space possible.
+```
+
+---
+
+DP4:
+
+```
+dp[i]
+depends on
+
+dp[i-1]
+dp[i-2]
+...
+dp[i-k]
+```
+
+If K becomes large:
+
+```
+We may need many previous states.
+```
+
+Therefore:
+
+```
+General O(1) space optimization
+is NOT possible.
+```
+
+Need DP array.
+
+---
+
+# DP Pattern Learned
+
+DP1 Fibonacci:
+
+```
+Fixed Previous States
+
+(n-1, n-2)
+```
+
+---
+
+DP2 Climbing Stairs:
+
+```
+Counting DP
+```
+
+---
+
+DP3 Frog Jump:
+
+```
+Minimum Cost DP
+```
+
+---
+
+DP4 Frog Jump K Distance:
+
+```
+Variable Choices DP
+
+Loop Inside Recurrence
+```
+
+This pattern appears frequently in advanced DP.
+
+---
+
+# Common Mistakes
+
+Mistake 1:
+
+Thinking:
+
+```
+Only check i-1 and i-2
+```
+
+Wrong.
+
+Need:
+
+```
+i-1
+i-2
+...
+i-K
+```
+
+---
+
+Mistake 2:
+
+Forgetting boundary check.
+
+Always ensure:
+
+```
+i-j >= 0
+```
+
+before using:
+
+```
+dp[i-j]
+```
+
+---
+
+Mistake 3:
+
+Confusing jump cost with total cost.
+
+Correct:
+
+```
+Total Cost
+
+= Previous Best Cost
+  + Current Jump Cost
+```
+
+---
+
+Mistake 4:
+
+Trying to optimize to O(1) space.
+
+Usually not possible because:
+
+```
+Current state may depend on
+many previous states.
+```
+
+---
+
+# Interview Pattern Recognition
+
+Whenever you see:
+
+```
+"From current position,
+ choose among many previous positions"
+```
+
+Think:
+
+```
+DP State
+
++
+Loop over all choices
+```
+
+This exact idea appears later in:
+
+```
+House Robber Variants
+Ninja Training
+Grid DP
+Coin Change
+Knapsack Variants
+Stock DP
+```
+
+DP4 is your first exposure to:
+
+```
+"Loop Inside Transition"
+```
+
+which is one of the most important DP patterns.
