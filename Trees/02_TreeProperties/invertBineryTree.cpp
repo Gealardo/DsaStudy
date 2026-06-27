@@ -32,26 +32,30 @@ node* arrayToTree(vector<int>& nodes){
     }
     return root;
 }
-
-bool isSymmetricTrees(node*&root1,node*&root2){
-    if(root1 ==nullptr && root2==nullptr) return true;
-    if(root1==nullptr || root2==nullptr) return false;
-    if(root1->data != root2->data) return false;
-    bool r1=isSymmetricTrees(root1->left,root2->right);
-    bool r2=isSymmetricTrees(root1->right,root2->left);
-
-    return r1&&r2;
+node* invertBinaryTree(node*&root){
+    if(root==nullptr) return nullptr;
+    node* temp=root->right;
+    root->right=root->left;
+    root->left=temp;
+    invertBinaryTree(root->left);
+    invertBinaryTree(root->right);
 }
+
+void preorder(node*&root){
+    if(root==nullptr) return;
+    cout<<root->data<<" ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
 
 int main(){
     vector<int>nodes1={1,2,3,4,5};
     node* root1=arrayToTree(nodes1);
-    vector<int>nodes2={1,3,2,-1,-1,5,4};
-    node* root2=arrayToTree(nodes2);
-
-    bool symmetric=isSymmetricTrees(root1,root2);
-    cout<<symmetric;
+    preorder(root1);
     cout<<endl;
-    bool symm=isSymmetricTrees(root1->left,root1->right);
-    cout<<symm<<endl;
+    invertBinaryTree(root1);
+    preorder(root1);
+
+    
 }

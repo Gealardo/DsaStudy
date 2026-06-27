@@ -56,6 +56,17 @@ int maxSubArray(vector<int>& nums) {
     
  return maxSum;
 }
+//------------------------------------
+int KAfun(vector<int>nums){
+    int maxsum=nums[0];
+    int maxx=nums[0];
+    for(int i=1;i<nums.size();i++){
+        maxx=max(maxx+nums[i],nums[i]);
+        maxsum=max(maxsum,maxx);
+    }
+    return maxsum;
+}
+//------------------------------------
 
 int main() {
     // Test Case 1: Standard mixed array
@@ -77,7 +88,7 @@ int main() {
 
     // Test Case 3: All positive numbers
     vector<int> nums3 = {1, 2, 3, 4};
-    cout << "Test 3: " << maxSubArray(nums3) << " (Expected: 10)\n";
+    cout << "Test 3: " << KAfun(nums3) << " (Expected: 10)\n";
 
     return 0;
 }
