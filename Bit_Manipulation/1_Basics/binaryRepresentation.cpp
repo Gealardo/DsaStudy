@@ -22,9 +22,6 @@ int inDecimal(int x){
     }
     return ans;
 }
-// cpp code for decimal to binary
-
-  
 
 
 int main(){
