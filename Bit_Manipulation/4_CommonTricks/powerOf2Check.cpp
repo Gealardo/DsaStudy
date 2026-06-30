@@ -7,6 +7,7 @@ bool isPowerOf2(int n){
     //has only one setbit->so clear lowest set bit n become zero
     int mask=(n-1);
     if((n&mask)==0) return true;
+    
     return false;
 
 }
