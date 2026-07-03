@@ -6,11 +6,9 @@ int fun(vector<int>&arr,int k){
     int left=0,right=0;
     int maxi=0;
     int count0=0;
-    int maa=0;
-    stack<int>s;
     while(right<n){
         if(arr[right]==0) count0++;
-        if(count0>k){
+        while(count0>k){
           if(arr[left]==0){
             count0--;
           }
