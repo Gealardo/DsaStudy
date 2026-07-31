@@ -50,12 +50,50 @@ int findSize(Node*&root){
   int right=findSize(root->right);
   return left+right+1;
 }
+int s=0;
+int findSum(Node*root){
+  if(root==nullptr ) return 0;
+  int left=findSum(root->left);
+  int right=findSum(root->right);
+  return s=s+root->data;
+}
+
+// count of lafe nodes
+void lnodes(Node*root,int &c){
+   if(root==nullptr) return; 
+  if(root->left ==NULL && root->right==NULL ) {
+    c++;
+    return;
+  }
+  lnodes(root->left,c);
+  lnodes(root->right,c);
+}
+// for non leaf nodes
+// void lnodes(Node*root,int &c){
+//    if(root==nullptr) return; 
+//   if(root->left !=NULL || root->right!=NULL ) {
+//     c++;
+    
+//   }
+//   lnodes(root->left,c);
+//   lnodes(root->right,c);
+// }
 
 
 int main(){
-  vector<int>arr={1,2,3,4,-1,0,9};
+  vector<int>arr={1,2,3,4};
   Node* root=BuiltTree(arr);
   
   int size=findSize(root);
   cout<<size;
+  int p=findSum(root);
+  cout<<"\nSum : ";
+  cout<<s;
+  
+  int c=0;
+  lnodes(root,c);
+
+  cout<<"\nLeaf count : "<<c;
+  
+
 }
