@@ -82,7 +82,7 @@ void inorder(Node*root)
     temp=temp->right;
   }
 }
-
+// post order (by reversing preorder,2 stack , 1 stack).pending
 
 int main(){
   vector<int>arr={1,2,3,4,5,6};
