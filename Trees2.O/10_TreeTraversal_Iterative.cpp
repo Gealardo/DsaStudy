@@ -58,8 +58,9 @@ void preorder(Node*root)
     Node*temp=s.top();
     s.pop();
     cout<<temp->data<<" ";
+     if(temp->right!=nullptr) s.push(temp->right);
     if(temp->left!=nullptr) s.push(temp->left);
-    if(temp->right!=nullptr) s.push(temp->right);
+   
   }
 }
 
