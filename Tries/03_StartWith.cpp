@@ -63,7 +63,7 @@ class Tries{
          }
          temp=temp->getNextCh(ch);
        }
-       return temp->flag;
+       return true;
 
      }
 

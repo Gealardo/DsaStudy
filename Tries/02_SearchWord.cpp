@@ -62,7 +62,7 @@ public:
         }
         temp=temp->getNextChar(word[i]);
       }
-      return temp->isEnd();
+      return temp->flag;
     }
 
 };
