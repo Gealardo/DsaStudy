@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// searchinf implementation;
+// search function implementation;
 
 
 //node creation
