@@ -1,3 +1,34 @@
+/*
+
+
+Pattern 1 — Kth element
+Kth Largest
+Kth Smallest
+
+Pattern 2 — Top K
+Top K Frequent
+Top K Frequent Words
+
+Pattern 3 — K Closest
+K Closest Points
+K Closest Elements
+
+Pattern 4 — Merge K
+Merge K Sorted Arrays
+Merge K Sorted Lists
+
+Pattern 5 — Two Heaps
+Median of Data Stream
+Sliding Window Median
+
+Pattern 6 — Heap + Greedy
+Task Scheduler
+Connect Ropes
+IPO
+
+*/
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
