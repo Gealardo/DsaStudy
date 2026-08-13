@@ -1,4 +1,4 @@
-//add 1 in the number represent by linked list.
+//add 1 in the number represent by linked list.// rev->add1.
 #include<bits/stdc++.h>
 using namespace std;
 
