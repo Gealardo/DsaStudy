@@ -1,6 +1,5 @@
 #include<bits/stdc++.h>
 using namespace std;
-
 /*
  * @lc app=leetcode id=40 lang=cpp
  *
@@ -25,8 +24,8 @@ public:
         subans.pop_back();
         while(i+1<n && candidates[i]==candidates[i+1]) i++;
         findcombi(i+1,n,candidates,k,ans,sum,subans);
-    }
 
+    }
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         vector<int>subans;
         vector<vector<int>>ans;
@@ -35,6 +34,5 @@ public:
         return ans;
     }
 };
-
 // @lc code=end
 
