@@ -1,5 +1,6 @@
 class Solution {
   public:
+   // type1-> count total 
     int fun(int i,vector<int>&coins,vector<vector<int>>&dp,int rem){
         if(i<0){
             return (rem==0)? 1:0 ;
@@ -17,6 +18,7 @@ class Solution {
     }
 };
 
+// type2-> minimize 
 // if junt need minimum coins to get the target sum/money
 class Solution {
 public:
