@@ -39,7 +39,7 @@ public:
             }
         }
         sort(topo.begin(),topo.end());
-        return topo;
+        return topo;// in increasing order
     }
 };
 // @lc code=end
