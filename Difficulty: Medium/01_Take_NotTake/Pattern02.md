@@ -5,7 +5,7 @@
        MINIMUM     COUNT      MAXIMUM
           │         │          │
           ↓         ↓          ↓
-   Coin Change   Coin Change   Rod Cutting
+    Coin Change   Coin Change   Rod Cutting
                     II
                                 │
                                 ↓
