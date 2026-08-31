@@ -22,7 +22,7 @@ class Solution {
                     fun(i, j, s1, s2, dp, len);
                 }
             }
-        }fun(n-1,m-1,s1,s2,dp,len);
+        }
         return len;
     }
 };
