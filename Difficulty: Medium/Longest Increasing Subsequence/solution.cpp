@@ -14,3 +14,44 @@ class Solution {
         return LIS(0,-1,n,arr,dp);
     }
 };
+
+// optimize to 1D DP
+class Solution {
+  public:
+    int lis(vector<int>& arr) {
+        int n=arr.size();
+        if(n==0) return 0;
+       vector<int>dp(n,1);
+       int l=1;
+       for(int i=1;i<n;i++){
+           for(int j=0;j<i;j++){
+               if(arr[j]<arr[i]){
+                    dp[i]=max(dp[i],dp[j]+1);
+                    l=max(dp[i],l);
+               }
+           }
+       }
+       return l;
+    }
+};
+
+// binary search
+class Solution {
+  public:
+    int lis(vector<int>& arr) {
+       vector<int>temp;
+       int n=arr.size();
+       int  l=0;
+       for(int i=0;i<n;i++){
+           if(temp.empty()||arr[i]>temp.back()){
+               temp.push_back(arr[i]);
+               l++;
+           } 
+           else{
+               auto lb=lower_bound(temp.begin(),temp.end(),arr[i]);
+               *lb=arr[i];
+           }
+       }
+       return l;
+    }
+};
